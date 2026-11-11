@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMWEzZTczIi8+PHBhdGggZD0iTTE1LjQgNWgxLjIwMGwuNyA2IDEuNzAwLjcuNiA1IDEuOTAwLjguNzAwIDguNTAwSDkuODAwbC43LTguNTAwIDEuOTAwLS44LjYwMC01IDEuNzAwLS43eiIgZmlsbD0iI2Y3ZjRlZSIvPjxyZWN0IHg9IjciIHk9IjI3IiB3aWR0aD0iMTgiIGhlaWdodD0iMS4yMDAiIGZpbGw9IiNjNmE1NWUiLz48L3N2Zz4K">
+</head>
+<body>
+<title>Гонка в Дубай</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Гонка в Дубай — светлый премиальный портал.
+   Бумага цвета слоновой кости, чернильный текст, заголовки и цифры шрифтом с засечками, тонкие линии вместо теней,
+   золото — только в линиях и одном слове заголовка. Ориентиры: частные банки, авиакомпании первого класса, деловые издания. */
+:root {
+  --bg: #f7f4ee; --paper: #fffdf9; --ink: #12151c; --text: #2c303b; --muted: #7c7f8a; --faint: #a9a79f;
+  --line: #e1dacb; --line2: #ece6da; --gold: #9a7836; --gold2: #c6a55e; --gold3: #e8d9b4; --navy: #0d1b2a;
+  --up: #2f7d57; --down: #b24a3c;
+  --serif: ui-serif, "New York", "PT Serif", "Georgia", "Times New Roman", serif;
+  --sans: "Helvetica Neue", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
+  --ease: cubic-bezier(.16, .84, .24, 1);
+  font-family: var(--sans);
+}
+* { box-sizing: border-box; }
+html { background: var(--bg); scroll-behavior: smooth; }
+body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; color: var(--text); background: var(--bg); font-size: 15px; line-height: 1.500; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: var(--ink); text-decoration: none; }
+.wrap { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+.muted { color: var(--muted); } .pad { padding: 16px 0; }
+.cap, .th > *, .medal, .eyebrow, .tabs a, .btn, .kpi span, .stat span, .head p, .prog-l, .status h2 span, .legend button, .back, .foot, .tile .rk span, .lead-card .pts span { font-size: 10.500px; letter-spacing: 1.700px; text-transform: uppercase; }
+.btn { display: inline-flex; align-items: center; justify-content: center; height: 46px; padding: 0 26px; border-radius: 1px; font-weight: 600; color: #fff; background: var(--ink); border: 1px solid var(--ink); transition: background .4s var(--ease), color .4s var(--ease), border-color .4s; }
+.btn:hover { background: var(--gold); border-color: var(--gold); }
+.btn.ghost { color: var(--ink); background: transparent; border-color: var(--ink); } .btn.ghost:hover { color: #fff; background: var(--ink); border-color: var(--ink); }
+
+/* ---------- верхняя полоса ---------- */
+.top { position: sticky; top: 0; z-index: 20; background: rgba(247, 244, 238, .94); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.bar { display: flex; align-items: center; gap: 6px 40px; flex-wrap: wrap; min-height: 72px; padding-top: 10px; }
+.brand { display: flex; align-items: center; gap: 13px; }
+.brand img { border-radius: 1px; }
+.brand b { display: block; font-family: var(--serif); font-weight: 500; font-size: 19px; line-height: 1.100; letter-spacing: .1px; color: var(--ink); }
+.brand small { display: block; margin-top: 2px; font-size: 9.500px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.tabs { display: flex; gap: 30px; overflow-x: auto; scrollbar-width: none; flex: 1 1 100%; order: 3; }
+.tabs a { position: relative; padding: 14px 0 16px; color: var(--muted); font-weight: 500; white-space: nowrap; transition: color .3s; }
+.tabs a::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform .5s var(--ease); }
+.tabs a:hover, .tabs a.on { color: var(--ink); } .tabs a.on::after { transform: scaleX(1); }
+.login { margin-left: auto; height: 38px; padding: 0 20px; color: var(--ink); background: transparent; }
+.login:hover { color: #fff; background: var(--ink); border-color: var(--ink); }
+@media (min-width: 940px) { .bar { flex-wrap: nowrap; padding-top: 0; } .tabs { order: 0; flex: 1 1 auto; align-self: stretch; } .tabs a { display: flex; align-items: center; padding: 0; } }
+
+/* ---------- шапка ---------- */
+.hero { position: relative; overflow: hidden; contain: paint; border-bottom: 1px solid var(--line);
+  background: radial-gradient(900px 420px at 72% 100%, rgba(232, 217, 180, .55), rgba(232, 217, 180, 0) 70%), linear-gradient(180deg, #fbf9f5 0%, var(--bg) 100%); }
+.hero-grid { position: relative; z-index: 2; display: grid; gap: 36px; padding-top: clamp(40px, 7vw, 96px); padding-bottom: calc(max(100vw, 900px) * .200); }
+@media (min-width: 940px) { .hero-grid { grid-template-columns: 1.250fr .750fr; align-items: end; gap: 72px; padding-bottom: calc(min(100vw, 1500px) * .170); } }
+.eyebrow { display: flex; align-items: center; gap: 14px; margin: 0 0 26px; font-weight: 600; color: var(--gold); animation: rise 1s var(--ease) both; }
+.eyebrow i { width: 44px; height: 1px; background: var(--gold); transform-origin: left; animation: line 1.200s .2s var(--ease) both; }
+.hero h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(40px, 7.200vw, 86px); line-height: 1; letter-spacing: -1.200px; color: var(--ink); animation: rise 1s .08s var(--ease) both; }
+.hero h1 em { font-style: italic; background: linear-gradient(100deg, #7d5f25 0%, var(--gold2) 38%, #e9d5a0 50%, var(--gold) 64%, #7d5f25 100%); background-size: 240% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: sheen 9s ease-in-out 1.500s infinite; padding-right: .06em; }
+.lead { margin: 28px 0 0; max-width: 500px; font-size: clamp(15px, 1.700vw, 17px); line-height: 1.650; color: var(--muted); animation: rise 1s .16s var(--ease) both; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin: 34px 0 0; animation: rise 1s .24s var(--ease) both; }
+.status { position: relative; background: rgba(255, 253, 249, .92); backdrop-filter: blur(6px); border: 1px solid var(--line); padding: 28px 28px 24px; animation: rise 1.100s .3s var(--ease) both; }
+.status::before { content: ""; position: absolute; left: -1px; right: -1px; top: -1px; height: 2px; background: linear-gradient(90deg, var(--gold), var(--gold3)); transform-origin: left; animation: line 1.400s .5s var(--ease) both; }
+.status h2 { margin: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-family: var(--serif); font-weight: 500; font-size: 20px; color: var(--ink); }
+.status h2 span { font-family: var(--sans); font-weight: 600; color: var(--muted); }
+.prog { margin: 22px 0 9px; height: 2px; background: var(--line); }
+.prog i { position: relative; display: block; height: 100%; width: var(--w, 0%); background: var(--ink); transition: width 2s var(--ease); }
+.prog i::after { content: ""; position: absolute; right: -4px; top: -3px; width: 8px; height: 8px; transform: rotate(45deg); background: var(--gold); }
+.prog-l { display: flex; justify-content: space-between; color: var(--muted); font-weight: 500; }
+.kpis { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 24px; border-top: 1px solid var(--line); }
+.kpi { padding: 20px 10px 0 0; } .kpi + .kpi { padding-left: 18px; border-left: 1px solid var(--line); }
+.kpi b { display: block; font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 3.800vw, 42px); line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
+.kpi span { display: block; margin-top: 10px; line-height: 1.450; color: var(--muted); font-weight: 500; }
+.skyline { position: absolute; left: 50%; bottom: -1px; width: max(100%, 900px); max-width: 1500px; transform: translateX(-50%); z-index: 1; display: block; animation: fade 1.800s .3s both; }
+.skyline .sun { fill: none; stroke: var(--gold2); stroke-width: 1; opacity: .7; }
+.skyline .far rect { fill: #12151c; opacity: .035; }
+.skyline .near > * { fill: url(#bld); stroke: #12151c; stroke-opacity: .38; stroke-width: .900; stroke-linejoin: round; }
+.skyline .near .burj { stroke: var(--gold); stroke-opacity: .9; stroke-width: 1.100; }
+.skyline .ground { stroke: #12151c; stroke-opacity: .35; stroke-width: 1; }
+.skyline .route { fill: none; stroke: #12151c; stroke-opacity: .28; stroke-width: 1; stroke-dasharray: 2 7; stroke-linecap: round; }
+.skyline .route.done { stroke: var(--gold); stroke-opacity: 1; stroke-width: 1.500; stroke-dasharray: none; }
+.skyline .pin { fill: var(--paper); stroke: var(--ink); stroke-width: 1.200; } .skyline .pin.end { stroke: var(--gold); stroke-width: 1.600; }
+.skyline .lbl { font-size: 9.500px; font-weight: 600; fill: var(--muted); letter-spacing: 2px; text-transform: uppercase; } .skyline .lbl.end { fill: var(--gold); }
+.skyline .jet { fill: var(--ink); }
+body:not(.home) .hero { display: none; }
+
+/* ---------- каркас ---------- */
+.note { margin-top: 26px; padding: 12px 18px; font-size: 13px; color: var(--muted); border: 1px solid var(--line); border-left: 2px solid var(--gold); background: var(--paper); }
+main.wrap { flex: 1; display: grid; gap: 34px; padding-top: 34px; padding-bottom: 56px; align-content: start; }
+.foot { border-top: 1px solid var(--line); color: var(--faint); padding: 26px 0; font-weight: 500; }
+.card { min-width: 0; background: var(--paper); border: 1px solid var(--line); animation: rise 1s var(--ease) both; }
+main > *:nth-child(2) { animation-delay: .1s; } main > *:nth-child(3) { animation-delay: .2s; } main > *:nth-child(4) { animation-delay: .3s; }
+.head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 20px; padding: 28px 30px 20px; }
+.head h2 { margin: 0; font-family: var(--serif); font-weight: 500; font-size: 26px; letter-spacing: -.2px; color: var(--ink); }
+.head p { margin: 0; color: var(--muted); font-weight: 500; }
+.body { padding: 0 30px 30px; }
+.page-title { margin: 14px 0 0; padding-bottom: 22px; border-bottom: 1px solid var(--line); animation: rise 1s var(--ease) both; }
+.page-title h1 { margin: 0; font-family: var(--serif); font-weight: 400; font-size: clamp(34px, 5vw, 52px); line-height: 1.050; letter-spacing: -.8px; color: var(--ink); }
+.page-title p { margin: 12px 0 0; color: var(--muted); }
+.grid2 { display: grid; gap: 34px; animation: rise 1s .15s var(--ease) both; }
+@media (min-width: 980px) { .grid2 { grid-template-columns: 1.600fr 1fr; } }
+.grid2 > .card { animation: none; }
+
+/* ---------- знак команды ---------- */
+.mono { --c: var(--ink); width: 38px; height: 38px; flex: none; display: grid; place-items: center; border-radius: 50%; font-family: var(--serif); font-size: 17px; color: var(--ink); background: var(--paper); border: 1px solid var(--line); box-shadow: inset 0 0 0 2px var(--paper), inset 0 0 0 3.500px var(--c); }
+.mono.big { width: 58px; height: 58px; font-size: 26px; box-shadow: inset 0 0 0 3px var(--paper), inset 0 0 0 5px var(--c); }
+.who { display: flex; align-items: center; gap: 14px; min-width: 0; }
+.who .nm { font-family: var(--serif); font-size: 17.500px; color: var(--ink); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.who .sub { margin-top: 1px; font-size: 12.500px; color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.chip { display: inline-flex; align-items: center; gap: 3px; font-family: var(--sans); font-size: 11.500px; font-weight: 600; letter-spacing: .3px; font-variant-numeric: tabular-nums; vertical-align: 2px; margin-left: 6px; }
+.chip.up { color: var(--up); } .chip.down { color: var(--down); } .chip.flat { color: var(--faint); }
+.c-week .chip { margin: 0; font-size: 13px; vertical-align: 0; }
+
+/* ---------- тройка лидеров ---------- */
+.leaders { display: grid; background: var(--paper); border: 1px solid var(--line); animation: rise 1s var(--ease) both; }
+@media (min-width: 800px) { .leaders { grid-template-columns: 1.150fr 1fr 1fr; } }
+.lead-card { position: relative; display: block; padding: 32px 30px 30px; color: var(--text); border-top: 1px solid var(--line); transition: background .5s var(--ease); }
+.lead-card:first-child { border-top: 0; }
+@media (min-width: 800px) { .lead-card { border-top: 0; border-left: 1px solid var(--line); } .lead-card:first-child { border-left: 0; } }
+.lead-card::after { content: ""; position: absolute; left: 30px; right: 30px; bottom: -1px; height: 2px; background: var(--c); transform: scaleX(0); transform-origin: left; transition: transform .7s var(--ease); }
+.lead-card:hover { background: #fbf8f1; } .lead-card:hover::after { transform: scaleX(1); }
+.lead-card.p1 { background: linear-gradient(160deg, #fffdf9 40%, #f6edd8 100%); }
+.lead-card .rk { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 26px; }
+.medal { display: inline-flex; align-items: baseline; gap: 14px; font-weight: 600; color: var(--muted); }
+.medal i { font-family: var(--serif); font-style: normal; font-size: 30px; line-height: 1; letter-spacing: 0; text-transform: none; color: var(--faint); }
+.p1 .medal { color: var(--gold); } .p1 .medal i { color: var(--gold); }
+.lead-card .bottom { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; margin-top: 30px; padding-top: 22px; border-top: 1px solid var(--line2); }
+.lead-card .pts b { font-family: var(--serif); font-weight: 400; font-size: clamp(46px, 6vw, 64px); line-height: .9; letter-spacing: -1px; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
+.lead-card .pts span { margin-left: 10px; color: var(--muted); font-weight: 600; }
+.lead-card .who .nm { font-size: 22px !important; }
+.spark { display: flex; align-items: flex-end; gap: 3px; height: 34px; }
+.spark i { width: 3px; background: var(--ink); opacity: .75; transform-origin: bottom; animation: grow 1s var(--ease) both; }
+
+/* ---------- турнирная таблица ---------- */
+.table { width: 100%; }
+.tr { display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 6px 14px; padding: 15px 30px; border-top: 1px solid var(--line2); color: inherit; transition: background .4s var(--ease); }
+a.tr:hover { background: #fbf8f1; }
+.th { padding-top: 12px; padding-bottom: 12px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #faf7f1; }
+.th > * { font-weight: 600; color: var(--muted); }
+.th + .tr { border-top: 0; }
+.pos .dot { font-family: var(--serif); font-size: 21px; color: var(--faint); font-variant-numeric: tabular-nums lining-nums; }
+.tr.p1 .pos .dot { color: var(--gold); } .tr.p2 .pos .dot, .tr.p3 .pos .dot { color: var(--ink); }
+.c-n, .c-pend, .c-week, .c-bar { display: none; }
+.c-pts { text-align: right; font-family: var(--serif); font-size: 24px; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; }
+.th .c-pts { font-family: var(--sans); font-size: 10.500px; }
+.meter { display: block; position: relative; height: 2px; background: var(--line2); }
+.meter i { position: absolute; inset: 0 auto 0 0; width: var(--x, 0%); background: var(--c); transition: width 2s var(--ease); }
+.meter i::after { content: ""; position: absolute; right: -3px; top: -2px; width: 6px; height: 6px; border-radius: 50%; background: var(--c); }
+.tr .m-row { grid-column: 1 / -1; padding: 2px 4px 0 0; }
+@media (min-width: 880px) {
+  .tr { grid-template-columns: 52px minmax(190px, 1.300fr) 96px 104px 96px minmax(120px, 1fr) 84px; gap: 18px; }
+  .c-n, .c-pend, .c-week, .c-bar { display: block; } .c-n, .c-pend, .c-week { text-align: right; font-variant-numeric: tabular-nums; }
+  .tr:not(.th) .c-n { font-family: var(--serif); font-size: 17px; color: var(--ink); } .tr:not(.th) .c-pend { color: var(--muted); }
+  .tr .m-row { display: none; } .who .sub.mob { display: none; }
+}
+
+/* ---------- темп, график ---------- */
+.rows { list-style: none; margin: 0; padding: 0; }
+.row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 14px; padding: 14px 30px; border-top: 1px solid var(--line2); }
+.row .spark { height: 24px; gap: 2px; } .row .spark i { width: 3px; background: var(--c); opacity: 1; }
+.row .chip { margin-left: 2px; vertical-align: 0; }
+.chart svg { width: 100%; height: auto; display: block; }
+.chart .ax { stroke: var(--line2); }
+.chart text { fill: var(--faint); font-size: 10.500px; letter-spacing: .4px; }
+.chart path.ln { fill: none; stroke-width: 1.500; stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 1; animation: draw 2.400s var(--ease) .4s forwards; transition: opacity .3s, stroke-width .3s; }
+.chart.focus path.ln { opacity: .1; } .chart.focus path.ln.on { opacity: 1; stroke-width: 2.800; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.legend button { all: unset; cursor: pointer; display: inline-flex; align-items: center; gap: 9px; padding: 7px 13px; font-size: 10.500px; letter-spacing: 1.400px; text-transform: uppercase; font-weight: 600; color: var(--muted); border: 1px solid var(--line); transition: color .3s, border-color .3s, background .3s; }
+.legend button:hover { color: var(--ink); border-color: var(--faint); } .legend button.on { color: var(--ink); border-color: var(--ink); background: #fbf8f1; }
+.legend i { width: 14px; height: 2px; }
+
+/* ---------- как участвовать ---------- */
+.steps { display: grid; background: var(--paper); border: 1px solid var(--line); animation: rise 1s .1s var(--ease) both; } @media (min-width: 800px) { .steps { grid-template-columns: repeat(4, 1fr); } }
+.step { padding: 30px 28px 32px; border-top: 1px solid var(--line); } .step:first-child { border-top: 0; }
+@media (min-width: 800px) { .step { border-top: 0; border-left: 1px solid var(--line); } .step:first-child { border-left: 0; } }
+.step b.n { display: block; font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 1; color: var(--gold); margin-bottom: 22px; }
+.step h3 { margin: 0 0 8px; font-family: var(--serif); font-weight: 500; font-size: 19px; color: var(--ink); } .step p { margin: 0; font-size: 13.500px; line-height: 1.600; color: var(--muted); }
+code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: .9em; color: var(--ink); background: #f3eee3; border: 1px solid var(--line); padding: 2px 8px; white-space: nowrap; }
+.cmd { display: block; margin-top: 12px; padding: 10px 12px; white-space: normal; }
+
+/* ---------- команда, плитки, заглушки ---------- */
+.stats { display: grid; grid-template-columns: repeat(2, 1fr); background: var(--paper); border: 1px solid var(--line); animation: rise 1s .08s var(--ease) both; } @media (min-width: 760px) { .stats { grid-template-columns: repeat(4, 1fr); } }
+.stat { padding: 26px 28px; border-left: 1px solid var(--line2); border-top: 1px solid var(--line2); margin: -1px 0 0 -1px; }
+.stat b { display: block; font-family: var(--serif); font-weight: 400; font-size: 40px; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; } .stat span { display: block; margin-top: 12px; color: var(--muted); font-weight: 500; }
+.banner { display: flex; align-items: center; gap: 22px; padding: 34px 30px; background: var(--paper); border: 1px solid var(--line); border-top: 2px solid var(--c); animation: rise 1s var(--ease) both; }
+.banner .nm { font-family: var(--serif); font-weight: 400; font-size: clamp(30px, 5vw, 46px); line-height: 1.050; letter-spacing: -.6px; color: var(--ink); } .banner .sub { margin-top: 8px; color: var(--muted); }
+.back { font-weight: 600; color: var(--muted); } .back:hover { color: var(--ink); }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0; background: var(--paper); border: 1px solid var(--line); overflow: hidden; }
+.tile { position: relative; display: flex; align-items: center; gap: 16px; padding: 24px 26px; color: var(--text); border-right: 1px solid var(--line2); border-bottom: 1px solid var(--line2); margin: 0 -1px -1px 0; transition: background .5s var(--ease); animation: fade .9s both; }
+.tile:hover { background: #fbf8f1; }
+.tile .nm { font-family: var(--serif) !important; font-weight: 400 !important; font-size: 19px; }
+.tile .rk { margin-left: auto; text-align: right; } .tile .rk b { display: block; font-family: var(--serif); font-weight: 400; font-size: 28px; line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums lining-nums; } .tile .rk span { color: var(--muted); font-weight: 500; }
+.empty { padding: 64px 28px; text-align: center; } .empty h2 { margin: 0 0 12px; font-family: var(--serif); font-weight: 400; font-size: 32px; color: var(--ink); } .empty p { max-width: 520px; margin: 0 auto; color: var(--muted); line-height: 1.650; }
+.empty ol { text-align: left; max-width: 440px; margin: 14px auto 22px; line-height: 2.100; }
+.lock { width: 52px; height: 52px; margin: 0 auto 22px; border-radius: 50%; display: grid; place-items: center; border: 1px solid var(--gold2); color: var(--gold); }
+
+/* ---------- анимации ---------- */
+@keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@keyframes grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes sheen { 0%, 60%, 100% { background-position: 100% 0; } 85% { background-position: 0 0; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .chart path.ln { stroke-dashoffset: 0; } html { scroll-behavior: auto; } }
+@media (max-width: 560px) {
+  .wrap { padding: 0 16px; } .head { padding: 22px 18px 16px; } .head h2 { font-size: 22px; } .body { padding: 0 18px 20px; }
+  .tr { padding: 14px 18px; } .row { padding: 13px 18px; } .status { padding: 22px 20px 20px; } .tabs { gap: 22px; }
+  .lead-card { padding: 26px 20px 24px; } .kpi + .kpi { padding-left: 12px; } .kpi span { letter-spacing: 1px; font-size: 9.500px; }
+  .stat { padding: 20px; } .banner { padding: 24px 20px; gap: 16px; } .step { padding: 24px 20px; }
+}
+
+/* ---------- корпоративный синий ----------
+   Основной #1A3E73, светлее #2F64AC. Синий — действия, навигация, шкалы и силуэт; золото остаётся только у приза и лидера. */
+:root { --blue: #1a3e73; --blue2: #2f64ac; --bluebg: #eef3fa; --blueline: #d5e0f0; }
+a { color: var(--blue); }
+.top { border-top: 3px solid var(--blue); }
+.brand b { color: var(--blue); }
+.tabs a:hover, .tabs a.on { color: var(--blue); } .tabs a::after { height: 2px; background: var(--blue); }
+.btn { background: var(--blue); border-color: var(--blue); } .btn:hover { background: var(--blue2); border-color: var(--blue2); }
+.btn.ghost, .login { color: var(--blue); background: transparent; border-color: var(--blue); }
+.btn.ghost:hover, .login:hover { color: #fff; background: var(--blue); border-color: var(--blue); }
+.hero { background: radial-gradient(900px 420px at 72% 100%, rgba(232, 217, 180, .5), rgba(232, 217, 180, 0) 70%), radial-gradient(900px 520px at 0% 0%, rgba(47, 100, 172, .13), rgba(47, 100, 172, 0) 70%), linear-gradient(180deg, #fbfaf7 0%, var(--bg) 100%); }
+.hero h1 { color: var(--blue); }
+.status::before { background: linear-gradient(90deg, var(--blue), var(--blue2)); }
+.status h2 { color: var(--blue); }
+.prog i { background: var(--blue); }
+.kpi b, .stat b { color: var(--blue); }
+.skyline .far rect { fill: var(--blue); opacity: .05; }
+.skyline .near > * { stroke: var(--blue); stroke-opacity: .5; }
+.skyline .ground { stroke: var(--blue); stroke-opacity: .45; }
+.skyline .route { stroke: var(--blue); stroke-opacity: .4; }
+.skyline .pin { stroke: var(--blue); } .skyline .jet { fill: var(--blue); }
+.skyline #bld stop { stop-color: #1a3e73; }
+.head h2, .page-title h1 { color: var(--blue); }
+.card, .leaders, .steps, .stats, .tiles { border-top: 2px solid var(--blue); }
+.th { background: var(--bluebg); border-color: var(--blueline); } .th > * { color: var(--blue); }
+a.tr:hover, .tile:hover, .lead-card:hover { background: #f6f9fd; }
+.tr.p2 .pos .dot, .tr.p3 .pos .dot { color: var(--blue); }
+.c-pts, .lead-card .pts b, .tile .rk b { color: var(--blue); } .th .c-pts { color: var(--blue); }
+.spark i { background: var(--blue); }
+.legend button.on { color: var(--blue); border-color: var(--blue); background: var(--bluebg); }
+.step b.n { color: var(--blue2); }
+code { color: var(--blue); background: var(--bluebg); border-color: var(--blueline); }
+.lock { border-color: var(--blueline); color: var(--blue); background: var(--bluebg); }
+.note { border-left-color: var(--blue); }
+.foot { margin-top: 10px; background: var(--blue); border-top: 0; color: rgba(255, 255, 255, .72); }
+
+/* ---------- упрощённая вёрстка: меньше блоков и столбцов ---------- */
+.hero-grid { align-items: end; }
+@media (min-width: 880px) {
+  .tr { grid-template-columns: 52px minmax(190px, 1.100fr) minmax(160px, 1.500fr) 120px 84px; gap: 22px; }
+}
+@media (min-width: 760px) { .stats.three { grid-template-columns: repeat(3, 1fr); } }
+.stats.three { grid-template-columns: repeat(3, 1fr); }
+@media (min-width: 800px) { .steps.three { grid-template-columns: repeat(3, 1fr); } }
+.head { padding-bottom: 22px; }
+.who .nm { white-space: nowrap; }
+
+
+/* демо-страница: поля по краям экрана телефона, липкая шапка ниже системной полосы */
+.wrap { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+@media (min-width: 561px) { .wrap { padding-left: max(28px, env(safe-area-inset-left, 0px)); padding-right: max(28px, env(safe-area-inset-right, 0px)); } }
+.top { top: env(safe-area-inset-top, 0px); }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 30; background: #1a3e73; }
+html, body { height: auto; }
+</style>
+
+  <header class="top">
+    <div class="wrap bar">
+      <a class="brand" href="#board"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMWEzZTczIi8+PHBhdGggZD0iTTE1LjQgNWgxLjIwMGwuNyA2IDEuNzAwLjcuNiA1IDEuOTAwLjguNzAwIDguNTAwSDkuODAwbC43LTguNTAwIDEuOTAwLS44LjYwMC01IDEuNzAwLS43eiIgZmlsbD0iI2Y3ZjRlZSIvPjxyZWN0IHg9IjciIHk9IjI3IiB3aWR0aD0iMTgiIGhlaWdodD0iMS4yMDAiIGZpbGw9IiNjNmE1NWUiLz48L3N2Zz4K" alt="" width="30" height="30"><span><b>Гонка в Дубай</b></span></a>
+      <nav class="tabs" aria-label="Разделы">
+        <a href="#board" data-tab="board">Табло</a>
+        <a href="#teams" data-tab="teams">Команды</a>
+        <a href="#rules" data-tab="rules">Как участвовать</a>
+      </nav>
+      <a class="btn login" href="#login">Войти</a>
+    </div>
+  </header>
+
+  <section class="hero" aria-label="Гонка команд: приз — поездка в Дубай">
+    <svg class="skyline" viewBox="0 0 1200 300" aria-hidden="true">
+      <defs>
+        <linearGradient id="bld" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a3e73" stop-opacity=".10"/><stop offset="1" stop-color="#1a3e73" stop-opacity="0"/></linearGradient>
+        <symbol id="plane" viewBox="0 0 32 32"><path d="M30 16c0 1.200-1.600 2-3.400 2h-6.200L14 27h-3l3-9H8l-2.500 3H3l1.500-5L3 11h2.500L8 14h6l-3-9h3l6.400 9h6.200c1.800 0 3.400.800 3.400 2z"/></symbol>
+      </defs>
+      <circle class="sun" cx="600" cy="160" r="112"/><circle class="sun" cx="600" cy="160" r="150" opacity=".4"/><circle class="sun" cx="600" cy="160" r="196" opacity=".2"/>
+      <g class="far" transform="translate(0 20)">
+        <rect x="38" y="172" width="34" height="88"/><rect x="82" y="150" width="26" height="110"/><rect x="118" y="186" width="40" height="74"/>
+        <rect x="330" y="160" width="30" height="100"/><rect x="368" y="128" width="24" height="132"/><rect x="400" y="176" width="44" height="84"/>
+        <rect x="700" y="150" width="28" height="110"/><rect x="736" y="178" width="46" height="82"/><rect x="792" y="138" width="22" height="122"/>
+        <rect x="980" y="180" width="36" height="80"/><rect x="1120" y="166" width="30" height="94"/><rect x="1158" y="190" width="42" height="70"/>
+      </g>
+      <g class="near" transform="translate(0 20)">
+        <path d="M232 260V96l3-10 3 10v10c48 26 74 78 76 154z"/><path d="M214 150h40v5h-40z"/>
+        <path d="M452 260V128l18-34 18 34v132z"/><path d="M496 260V150l14-26 14 26v110z"/>
+        <rect x="166" y="196" width="46" height="64"/><rect x="536" y="188" width="30" height="72"/>
+        <path class="burj" d="M599 4h2l1 40 5 2 1 38 7 2 1 38 8 2 1 38 9 2 2 94h-72l2-94 9-2 1-38 8-2 1-38 7-2 1-38 5-2z"/>
+        <rect x="650" y="170" width="34" height="90"/><path d="M826 260V160l22-18v118z"/>
+        <path d="M880 260V118h72v142h-13V132h-46v128z"/>
+        <circle cx="1080" cy="204" r="48" fill="none"/><path d="M1080 156v96M1032 204h96M1046 170l68 68M1114 170l-68 68M1080 204l-18 56M1080 204l18 56" fill="none"/>
+      </g>
+      <path class="ground" d="M0 280h1200"/>
+      <!-- маршрут: самолёт стоит там, где сейчас гонка по времени -->
+      <path id="route" class="route" d="M70 262C300 60 820 18 1130 150"/>
+      <path id="routeDone" class="route done" d="M70 262C300 60 820 18 1130 150"/>
+      <circle class="pin" cx="70" cy="262" r="4"/><circle class="pin end" cx="1130" cy="150" r="5"/>
+      <text class="lbl" x="70" y="250" text-anchor="middle">Старт</text><text class="lbl end" x="1130" y="136" text-anchor="middle">Дубай</text>
+      <g id="jet" class="jet"><use href="#plane" x="-13" y="-13" width="26" height="26"/></g>
+    </svg>
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow"><i></i>Приз — поездка в Дубай</p>
+        <h1>Гонка команд<br><em>за поездку в Дубай</em></h1>
+      </div>
+      <aside class="status" id="status" aria-label="Ход гонки"></aside>
+    </div>
+  </section>
+
+  <div class="wrap"><div id="note" class="note" hidden></div></div>
+  <main id="app" class="wrap" aria-live="polite"><p class="muted pad">Загрузка…</p></main>
+  <footer class="foot"><div class="wrap"><span id="updated"></span></div></footer>
+  
+
+<script>
+document.body.classList.add('home');
+// Данные вшиты в страницу: сервера у демо-копии нет.
+(function () {
+  const API = {"/api/board":{"today":"2026-11-11","start":"2026-10-22","end":"2026-12-21","daysLeft":40,"rules":{"mode":"count","unit":100000,"draft":true},"teams":[{"id":8,"name":"Ястребы","color":"#7b4fc9","emblem":"🛩️","place":1,"points":54,"count":54,"pending":1,"gap":0,"delta":0},{"id":4,"name":"Тигры","color":"#e8892b","emblem":"🐯","place":2,"points":47,"count":47,"pending":6,"gap":7,"delta":0},{"id":3,"name":"Медведи","color":"#92602e","emblem":"🐻","place":3,"points":46,"count":46,"pending":2,"gap":8,"delta":0},{"id":6,"name":"Акулы","color":"#1f9e9a","emblem":"🦈","place":4,"points":37,"count":37,"pending":4,"gap":17,"delta":-1},{"id":2,"name":"Волки","color":"#64748b","emblem":"🐺","place":5,"points":30,"count":30,"pending":2,"gap":24,"delta":0},{"id":11,"name":"Драконы","color":"#b5179e","emblem":"🐉","place":6,"points":26,"count":26,"pending":1,"gap":28,"delta":-1},{"id":10,"name":"Буйволы","color":"#6b8e23","emblem":"🐃","place":7,"points":25,"count":25,"pending":0,"gap":29,"delta":1},{"id":7,"name":"Пантеры","color":"#334155","emblem":"🐆","place":8,"points":24,"count":24,"pending":0,"gap":30,"delta":2},{"id":1,"name":"Орлы","color":"#d6453d","emblem":"🦅","place":9,"points":19,"count":19,"pending":1,"gap":35,"delta":-2},{"id":9,"name":"Лисы","color":"#d9622b","emblem":"🦊","place":10,"points":14,"count":14,"pending":3,"gap":40,"delta":-1},{"id":5,"name":"Соколы","color":"#2f7fd1","emblem":"🪶","place":10,"points":14,"count":14,"pending":0,"gap":40,"delta":1}],"chart":{"days":["2026-10-22","2026-10-23","2026-10-24","2026-10-25","2026-10-26","2026-10-27","2026-10-28","2026-10-29","2026-10-30","2026-10-31","2026-11-01","2026-11-02","2026-11-03","2026-11-04","2026-11-05","2026-11-06","2026-11-07","2026-11-08","2026-11-09","2026-11-10","2026-11-11"],"series":{"1":[2,3,4,5,5,7,7,8,11,11,13,14,14,15,15,16,16,18,18,19,19],"2":[0,1,2,2,2,5,5,8,9,11,15,18,18,19,22,23,26,27,28,30,30],"3":[2,5,6,7,8,13,14,14,16,20,24,24,27,30,33,37,38,40,43,45,46],"4":[1,4,6,9,10,15,17,20,22,26,28,29,33,35,37,39,42,44,47,47,47],"5":[1,2,2,3,4,4,5,7,7,8,9,9,10,11,12,13,13,14,14,14,14],"6":[1,2,5,6,9,11,12,16,18,21,24,26,28,30,30,33,34,35,36,36,37],"7":[1,1,3,3,3,5,7,8,9,11,11,11,12,12,13,15,18,20,23,23,24],"8":[3,7,9,11,13,18,20,24,26,28,31,32,34,36,39,42,44,45,49,52,54],"9":[0,0,0,0,0,2,3,6,8,8,9,10,12,13,13,14,14,14,14,14,14],"10":[1,2,2,3,3,4,5,8,9,9,10,12,12,14,16,18,20,22,24,25,25],"11":[2,3,6,6,8,9,10,12,13,14,16,17,17,19,20,21,23,25,26,26,26]}},"show":{"amounts":false,"names":false},"test":true},"/api/team/8":{"id":8,"name":"Ястребы","color":"#7b4fc9","emblem":"🛩️","members":[{"name":"Участник 1","count":10,"days":["2026-11-09","2026-11-07","2026-11-06","2026-11-03","2026-11-02","2026-10-27","2026-10-25","2026-10-24","2026-10-23","2026-10-22"]},{"name":"Участник 8","count":9,"days":["2026-11-09","2026-11-04","2026-11-03","2026-10-29","2026-10-28","2026-10-27","2026-10-26","2026-10-25","2026-10-23"]},{"name":"Участник 5","count":8,"days":["2026-11-11","2026-11-06","2026-11-05","2026-11-04","2026-10-31","2026-10-29","2026-10-28","2026-10-27"]},{"name":"Участник 2","count":6,"days":["2026-11-10","2026-11-08","2026-11-05","2026-10-30","2026-10-29","2026-10-24"]},{"name":"Участник 3","count":6,"days":["2026-11-10","2026-11-07","2026-11-01","2026-10-30","2026-10-29","2026-10-22"]},{"name":"Участник 6","count":6,"days":["2026-11-09","2026-11-06","2026-11-01","2026-10-26","2026-10-23","2026-10-22"]},{"name":"Участник 7","count":5,"days":["2026-11-09","2026-11-01","2026-10-31","2026-10-27","2026-10-23"]},{"name":"Участник 4","count":4,"days":["2026-11-11","2026-11-10","2026-11-05","2026-10-27"]}],"show":{"amounts":false,"names":false}},"/api/team/4":{"id":4,"name":"Тигры","color":"#e8892b","emblem":"🐯","members":[{"name":"Участник 4","count":9,"days":["2026-11-09","2026-11-07","2026-11-04","2026-11-03","2026-11-02","2026-11-01","2026-10-31","2026-10-27","2026-10-23"]},{"name":"Участник 1","count":8,"days":["2026-11-09","2026-11-05","2026-11-04","2026-10-29","2026-10-27","2026-10-25","2026-10-24","2026-10-23"]},{"name":"Участник 6","count":8,"days":["2026-11-09","2026-11-07","2026-11-06","2026-11-03","2026-10-31","2026-10-29","2026-10-27","2026-10-25"]},{"name":"Участник 7","count":8,"days":["2026-11-08","2026-11-07","2026-11-03","2026-10-31","2026-10-29","2026-10-28","2026-10-27","2026-10-23"]},{"name":"Участник 2","count":7,"days":["2026-11-08","2026-11-06","2026-11-01","2026-10-31","2026-10-30","2026-10-28","2026-10-22"]},{"name":"Участник 5","count":4,"days":["2026-11-03","2026-10-27","2026-10-26","2026-10-24"]},{"name":"Участник 3","count":3,"days":["2026-11-05","2026-10-30","2026-10-25"]}],"show":{"amounts":false,"names":false}},"/api/team/3":{"id":3,"name":"Медведи","color":"#92602e","emblem":"🐻","members":[{"name":"Участник 3","count":8,"days":["2026-11-09","2026-11-08","2026-11-06","2026-11-05","2026-11-03","2026-11-01","2026-10-27","2026-10-22"]},{"name":"Участник 2","count":7,"days":["2026-11-09","2026-11-05","2026-11-04","2026-11-03","2026-11-01","2026-10-31","2026-10-25"]},{"name":"Участник 7","count":7,"days":["2026-11-10","2026-11-06","2026-11-01","2026-10-31","2026-10-30","2026-10-28","2026-10-27"]},{"name":"Участник 5","count":6,"days":["2026-11-07","2026-11-06","2026-11-05","2026-10-30","2026-10-27","2026-10-23"]},{"name":"Участник 1","count":5,"days":["2026-11-08","2026-11-01","2026-10-31","2026-10-27","2026-10-22"]},{"name":"Участник 8","count":5,"days":["2026-11-11","2026-11-10","2026-11-04","2026-10-26","2026-10-23"]},{"name":"Участник 4","count":4,"days":["2026-11-03","2026-10-31","2026-10-27","2026-10-23"]},{"name":"Участник 6","count":4,"days":["2026-11-09","2026-11-06","2026-11-04","2026-10-24"]}],"show":{"amounts":false,"names":false}},"/api/team/6":{"id":6,"name":"Акулы","color":"#1f9e9a","emblem":"🦈","members":[{"name":"Участник 1","count":10,"days":["2026-11-08","2026-11-06","2026-11-02","2026-10-31","2026-10-30","2026-10-29","2026-10-26","2026-10-25","2026-10-24","2026-10-23"]},{"name":"Участник 2","count":9,"days":["2026-11-11","2026-11-06","2026-11-04","2026-11-01","2026-10-30","2026-10-29","2026-10-28","2026-10-26","2026-10-24"]},{"name":"Участник 3","count":9,"days":["2026-11-06","2026-11-04","2026-11-03","2026-11-01","2026-10-31","2026-10-29","2026-10-27","2026-10-26","2026-10-22"]},{"name":"Участник 4","count":9,"days":["2026-11-09","2026-11-07","2026-11-03","2026-11-02","2026-11-01","2026-10-31","2026-10-29","2026-10-27","2026-10-24"]}],"show":{"amounts":false,"names":false}},"/api/team/2":{"id":2,"name":"Волки","color":"#64748b","emblem":"🐺","members":[{"name":"Участник 3","count":8,"days":["2026-11-09","2026-11-07","2026-11-06","2026-11-02","2026-10-31","2026-10-29","2026-10-24","2026-10-23"]},{"name":"Участник 6","count":6,"days":["2026-11-10","2026-11-08","2026-11-05","2026-11-04","2026-11-02","2026-11-01"]},{"name":"Участник 5","count":5,"days":["2026-11-07","2026-11-05","2026-10-30","2026-10-29","2026-10-27"]},{"name":"Участник 2","count":4,"days":["2026-11-10","2026-11-07","2026-11-01","2026-10-27"]},{"name":"Участник 4","count":4,"days":["2026-11-01","2026-10-31","2026-10-29","2026-10-27"]},{"name":"Участник 1","count":3,"days":["2026-11-05","2026-11-02","2026-11-01"]}],"show":{"amounts":false,"names":false}},"/api/team/11":{"id":11,"name":"Драконы","color":"#b5179e","emblem":"🐉","members":[{"name":"Участник 1","count":7,"days":["2026-11-08","2026-11-01","2026-10-29","2026-10-28","2026-10-26","2026-10-24","2026-10-22"]},{"name":"Участник 2","count":7,"days":["2026-11-04","2026-11-02","2026-11-01","2026-10-30","2026-10-26","2026-10-24","2026-10-22"]},{"name":"Участник 3","count":7,"days":["2026-11-09","2026-11-08","2026-11-07","2026-11-05","2026-11-04","2026-10-29","2026-10-24"]},{"name":"Участник 4","count":5,"days":["2026-11-07","2026-11-06","2026-10-31","2026-10-27","2026-10-23"]}],"show":{"amounts":false,"names":false}},"/api/team/10":{"id":10,"name":"Буйволы","color":"#6b8e23","emblem":"🐃","members":[{"name":"Участник 2","count":6,"days":["2026-11-07","2026-11-02","2026-10-29","2026-10-27","2026-10-23","2026-10-22"]},{"name":"Участник 6","count":5,"days":["2026-11-09","2026-11-07","2026-11-06","2026-11-02","2026-10-25"]},{"name":"Участник 3","count":4,"days":["2026-11-09","2026-11-05","2026-11-04","2026-10-29"]},{"name":"Участник 5","count":4,"days":["2026-11-08","2026-11-05","2026-10-30","2026-10-29"]},{"name":"Участник 1","count":3,"days":["2026-11-10","2026-11-08","2026-11-06"]},{"name":"Участник 4","count":3,"days":["2026-11-04","2026-11-01","2026-10-28"]}],"show":{"amounts":false,"names":false}},"/api/team/7":{"id":7,"name":"Пантеры","color":"#334155","emblem":"🐆","members":[{"name":"Участник 6","count":5,"days":["2026-11-09","2026-11-07","2026-11-03","2026-10-31","2026-10-27"]},{"name":"Участник 3","count":4,"days":["2026-11-11","2026-11-09","2026-10-29","2026-10-24"]},{"name":"Участник 5","count":4,"days":["2026-11-09","2026-11-06","2026-11-05","2026-10-31"]},{"name":"Участник 1","count":3,"days":["2026-11-07","2026-11-06","2026-10-28"]},{"name":"Участник 2","count":3,"days":["2026-10-30","2026-10-27","2026-10-22"]},{"name":"Участник 4","count":2,"days":["2026-11-07","2026-10-28"]},{"name":"Участник 7","count":2,"days":["2026-11-08","2026-10-24"]},{"name":"Участник 8","count":1,"days":["2026-11-08"]}],"show":{"amounts":false,"names":false}},"/api/team/1":{"id":1,"name":"Орлы","color":"#d6453d","emblem":"🦅","members":[{"name":"Участник 3","count":6,"days":["2026-11-10","2026-11-06","2026-10-29","2026-10-24","2026-10-23","2026-10-22"]},{"name":"Участник 5","count":6,"days":["2026-11-08","2026-11-01","2026-10-30","2026-10-27","2026-10-25","2026-10-22"]},{"name":"Участник 1","count":3,"days":["2026-11-08","2026-11-01","2026-10-30"]},{"name":"Участник 2","count":3,"days":["2026-11-04","2026-11-02","2026-10-27"]},{"name":"Участник 4","count":1,"days":["2026-10-30"]}],"show":{"amounts":false,"names":false}},"/api/team/9":{"id":9,"name":"Лисы","color":"#d9622b","emblem":"🦊","members":[{"name":"Участник 4","count":5,"days":["2026-11-04","2026-11-02","2026-10-30","2026-10-29","2026-10-27"]},{"name":"Участник 1","count":4,"days":["2026-11-03","2026-10-30","2026-10-28","2026-10-27"]},{"name":"Участник 2","count":3,"days":["2026-11-06","2026-11-03","2026-10-29"]},{"name":"Участник 3","count":2,"days":["2026-11-01","2026-10-29"]}],"show":{"amounts":false,"names":false}},"/api/team/5":{"id":5,"name":"Соколы","color":"#2f7fd1","emblem":"🪶","members":[{"name":"Участник 2","count":3,"days":["2026-11-01","2026-10-29","2026-10-22"]},{"name":"Участник 4","count":3,"days":["2026-11-05","2026-10-31","2026-10-29"]},{"name":"Участник 7","count":3,"days":["2026-11-03","2026-10-28","2026-10-23"]},{"name":"Участник 3","count":2,"days":["2026-11-04","2026-10-25"]},{"name":"Участник 1","count":1,"days":["2026-10-26"]},{"name":"Участник 5","count":1,"days":["2026-11-08"]},{"name":"Участник 6","count":1,"days":["2026-11-06"]}],"show":{"amounts":false,"names":false}}};
+  window.fetch = function (url) {
+    const key = String(url).split('?')[0];
+    const hit = Object.prototype.hasOwnProperty.call(API, key);
+    return Promise.resolve(new Response(JSON.stringify(hit ? API[key] : { error: 'Не найдено' }), { status: hit ? 200 : 404, headers: { 'Content-Type': 'application/json' } }));
+  };
+})();
+</script>
+<script>
+'use strict';
+/* Сайт гонки: табло, команды, правила. Без библиотек. Разделы — по адресу после #. */
+(function () {
+  const app = document.getElementById('app');
+  const note = document.getElementById('note');
+  let data = null, raw = '';
+
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const num = n => Number(n || 0).toLocaleString('ru-RU');
+  const plural = (n, a, b, c) => { n = Math.abs(n) % 100; const m = n % 10; return n > 10 && n < 20 ? c : m > 1 && m < 5 ? b : m === 1 ? a : c; };
+  const MONTHS = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
+  const dLong = d => { const [, m, day] = d.split('-'); return Number(day) + ' ' + MONTHS[Number(m) - 1]; };
+  const calm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const points = n => plural(n, 'очко', 'очка', 'очков');
+  const DAY = 86400000;
+
+  async function get(url) {
+    const r = await fetch(url, { headers: { Accept: 'application/json' } });
+    if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || 'Ошибка ' + r.status);
+    return r.json();
+  }
+
+  /** Плавное движение значения от 0 до 1. */
+  function tween(dur, step) {
+    if (calm) return step(1);
+    const t0 = performance.now();
+    (function tick(t) { const k = Math.min(1, (t - t0) / dur); step(1 - Math.pow(1 - k, 4)); if (k < 1) requestAnimationFrame(tick); })(t0);
+  }
+  function countUp(root) {
+    root.querySelectorAll('[data-n]').forEach(el => { const to = Number(el.dataset.n); tween(1400, e => { el.textContent = num(Math.round(to * e)); }); });
+  }
+
+  /* ---------- шапка: ход гонки ---------- */
+  function raceProgress(b) {
+    if (!b.start || !b.end) return null;
+    const total = Math.round((Date.parse(b.end) - Date.parse(b.start)) / DAY) + 1;
+    const day = Math.min(total, Math.max(0, Math.round((Date.parse(b.today) - Date.parse(b.start)) / DAY) + 1));
+    return { total, day, p: total > 0 ? day / total : 0 };
+  }
+
+  function hero(b) {
+    const total = b.teams.reduce((a, t) => a + t.count, 0), pend = b.teams.reduce((a, t) => a + t.pending, 0);
+    const pr = raceProgress(b);
+    const st = document.getElementById('status');
+    st.innerHTML = `
+      <h2>Ход гонки <span>${pr ? `день ${pr.day} из ${pr.total}` : ''}</span></h2>
+      ${pr ? `<div class="prog"><i data-w="${Math.round(pr.p * 100)}"></i></div>
+        <div class="prog-l"><span>${dLong(b.start)}</span><span>${dLong(b.end)}</span></div>` : ''}
+      <div class="kpis">
+        <div class="kpi"><b data-n="${b.daysLeft == null ? 0 : b.daysLeft}">0</b><span>${b.daysLeft == null ? "до финиша" : plural(b.daysLeft, "день", "дня", "дней") + " до финиша"}</span></div>
+        <div class="kpi"><b data-n="${total}">0</b><span>в зачёте</span></div>
+        <div class="kpi"><b data-n="${pend}">0</b><span>на проверке</span></div>
+      </div>`;
+    countUp(st);
+    requestAnimationFrame(() => requestAnimationFrame(() => st.querySelectorAll('[data-w]').forEach(i => i.style.setProperty('--w', i.dataset.w + '%'))));
+
+    // Самолёт на маршруте стоит там, где гонка сейчас по времени.
+    const route = document.getElementById('route'), done = document.getElementById('routeDone'), jet = document.getElementById('jet');
+    const len = route.getTotalLength(), p = pr ? pr.p : 0;
+    tween(2200, e => {
+      const at = len * p * e, a = route.getPointAtLength(at), c = route.getPointAtLength(Math.min(len, at + 2));
+      const ang = Math.atan2(c.y - a.y, c.x - a.x) * 180 / Math.PI;
+      jet.setAttribute('transform', `translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${ang.toFixed(1)})`);
+      done.style.strokeDasharray = `${at.toFixed(1)} ${len.toFixed(1)}`;
+    });
+  }
+
+  function setView(tab, home) {
+    document.body.classList.toggle('home', !!home);
+    document.querySelectorAll('.tabs a').forEach(a => a.classList.toggle('on', a.dataset.tab === tab));
+  }
+
+  function showNote(b) {
+    const parts = [];
+    if (b.test) parts.push('Тестовые данные');
+    if (b.rules && b.rules.draft) parts.push('правила подсчёта не утверждены');
+    note.hidden = !parts.length; note.textContent = parts.join(' · ');
+  }
+
+  /* ---------- общие куски ---------- */
+  const mono = (t, big) => `<span class="mono${big ? ' big' : ''}" style="--c:${esc(t.color)}">${esc(String(t.name).trim().charAt(0).toUpperCase())}</span>`;
+  const deltaChip = d => d > 0 ? `<span class="chip up">▲ ${d}</span>` : d < 0 ? `<span class="chip down">▼ ${-d}</span>` : '';
+  const title = h => `<div class="page-title"><h1>${h}</h1></div>`;
+
+  function fillMeters(root) {
+    const go = () => root.querySelectorAll('.meter').forEach(m => m.style.setProperty('--x', m.dataset.x + '%'));
+    calm ? go() : requestAnimationFrame(() => requestAnimationFrame(go));
+  }
+
+  /* ---------- разделы ---------- */
+  function viewBoard(b) {
+    setView('board', true);
+    if (!b.teams.length) return app.innerHTML = `<section class="card empty"><h2>Гонка скоро начнётся</h2></section>`;
+    const maxPts = Math.max(1, b.teams[0].points);
+
+    const rows = b.teams.map(t => {
+      const x = Math.max(2, Math.round(t.points / maxPts * 100));
+      return `<a class="tr${t.place <= 3 ? ' p' + t.place : ''}" href="#team-${t.id}" style="--c:${esc(t.color)}">
+        <span class="pos"><span class="dot">${t.place}</span></span>
+        <span class="who">${mono(t)}<span style="min-width:0"><div class="nm">${esc(t.name)} ${deltaChip(t.delta)}</div></span></span>
+        <span class="c-bar"><span class="meter" data-x="${x}"><i></i></span></span>
+        <span class="c-pend">${t.pending || '—'}</span>
+        <span class="c-pts">${num(t.points)}</span>
+        <span class="m-row"><span class="meter" data-x="${x}"><i></i></span></span></a>`;
+    }).join('');
+
+    app.innerHTML = `
+      <section class="card" id="table"><div class="head"><h2>Турнирная таблица</h2></div>
+        <div class="table"><div class="tr th"><span>Место</span><span>Команда</span><span class="c-bar"></span><span class="c-pend">На проверке</span><span class="c-pts">Очки</span></div>${rows}</div></section>`;
+    fillMeters(app);
+  }
+
+  function viewTeams(b) {
+    setView('teams');
+    app.innerHTML = title('Команды') +
+      `<div class="tiles">${b.teams.map((t, i) => `<a class="tile" href="#team-${t.id}" style="--c:${esc(t.color)};animation-delay:${i * 40}ms">
+        ${mono(t)}<span style="min-width:0"><div class="nm">${esc(t.name)}</div><div class="sub muted" style="font-size:12.5px">${t.place}-е место</div></span>
+        <span class="rk"><b>${num(t.points)}</b></span></a>`).join('')}</div>`;
+  }
+
+  async function viewTeam(b, id) {
+    setView('teams');
+    const t = b.teams.find(x => x.id === id);
+    if (!t) return app.innerHTML = `<section class="card empty"><h2>Команда не найдена</h2><p><a href="#board">К табло</a></p></section>`;
+    const info = await get('/api/team/' + id);
+    app.innerHTML = `<a class="back" href="#teams">← Команды</a>
+      <section class="banner" style="--c:${esc(t.color)}">${mono(t, true)}
+        <span style="min-width:0"><div class="nm">${esc(t.name)}</div>
+        <div class="sub">${t.place}-е место ${deltaChip(t.delta)}</div></span></section>
+      <div class="stats three">
+        <div class="stat"><b data-n="${t.points}">0</b><span>${points(t.points)}</span></div>
+        <div class="stat"><b data-n="${t.pending}">0</b><span>на проверке</span></div>
+        <div class="stat"><b data-n="${info.members.length}">0</b><span>${plural(info.members.length, 'участник', 'участника', 'участников')}</span></div>
+      </div>
+        <section class="card"><div class="head"><h2>Участники</h2></div><ul class="rows">${
+          info.members.map(m => `<li class="row"><span class="who"><div class="nm">${esc(m.name)}</div></span><span class="c-pts">${m.count}</span></li>`).join('') || '<li class="row muted">Пока никого</li>'}</ul></section>`;
+    countUp(app);
+  }
+
+  function viewRules() {
+    setView('rules');
+    const steps = [
+      ['Напишите боту', 'В чате своей команды:<code class="cmd">@Бот договор 2411-057 180000</code>'],
+      ['Проверка', 'Проверяющий подтвердит договор или отклонит с причиной.'],
+      ['Зачёт', 'Подтверждённый договор попадает в таблицу.']
+    ];
+    app.innerHTML = title('Как участвовать') +
+      `<div class="steps three">${steps.map(([h, p], i) => `<div class="step"><b class="n">0${i + 1}</b><h3>${h}</h3><p>${p}</p></div>`).join('')}</div>`;
+  }
+
+  function viewLogin() {
+    setView('');
+    app.innerHTML = `<section class="card empty"><h2>Вход</h2><p>Напишите боту в личные сообщения <code>гонка вход</code> — он пришлёт ссылку.</p></section>`;
+  }
+
+  /* ---------- маршруты ---------- */
+  async function load() {
+    const r = await fetch('/api/board', { headers: { Accept: 'application/json' } });
+    if (!r.ok) throw new Error('Ошибка ' + r.status);
+    const text = await r.text();
+    if (text === raw) return false;
+    raw = text; data = JSON.parse(text);
+    showNote(data); hero(data);
+    document.getElementById('updated').textContent = 'Обновлено ' + dLong(data.today);
+    return true;
+  }
+
+  async function route() {
+    const h0 = location.hash.replace(/^#/, ''); const h = !h0 || h0 === 'board' ? '/' : /^team-\d+$/.test(h0) ? '/team/' + h0.slice(5) : '/' + h0;
+    try {
+      if (!data) await load();
+      let m;
+      if (h === '/') viewBoard(data);
+      else if (h === '/teams') viewTeams(data);
+      else if ((m = h.match(/^\/team\/(\d+)$/))) await viewTeam(data, Number(m[1]));
+      else if (h === '/rules') viewRules();
+      else if (h === '/login' || h === '/check' || h === '/settings') viewLogin();   // проверка и настройки появятся после входа (этап 4)
+      else { location.hash = '#board'; }
+    } catch (e) {
+      app.innerHTML = `<section class="card empty"><h2>Не удалось загрузить данные</h2><p>${esc(e.message)}</p></section>`;
+    }
+  }
+
+  window.addEventListener('hashchange', () => { window.scrollTo(0, 0); route(); });
+  route();
+  // Раз в минуту: перерисовываем, только если данные изменились — анимации не дёргаются зря.
+  setInterval(async () => { if (document.hidden) return; try { if (await load()) route(); } catch { /* сеть моргнула — попробуем через минуту */ } }, 60000);
+})();
+
+</script>
+</body>
+</html>
